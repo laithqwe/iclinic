@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>حجز موعد - مركز إي كلينيك</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      direction: rtl;
+      padding: 0;
+      margin: 0;
+      background: #f0f8ff;
+    }
+
+    h1 {
+      text-align: center;
+      color: #4CAF50;
+      padding: 20px 0 10px;
+    }
+
+    /* مكان اللوجو */
+    .logo {
+      display: block;
+      max-width: 150px;
+      margin: 0 auto;
+      padding-bottom: 20px;
+    }
+
+    .clinic-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 10px;
+      padding: 0 10px 20px;
+    }
+
+    .clinic-card {
+      background: white;
+      border: 2px solid #4CAF50;
+      border-radius: 8px;
+      padding: 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .clinic-card.selected {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    form {
+      max-width: 500px;
+      margin: auto;
+      padding: 0 10px;
+    }
+
+    input, button {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      font-size: 16px;
+      border-radius: 6px;
+      box-sizing: border-box;
+    }
+
+    .time-slots, .date-slots {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin: 15px 0;
+    }
+
+    .time-slot, .date-slot {
+      background-color: white;
+      border: 1px solid #4CAF50;
+      padding: 10px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .time-slot.selected, .date-slot.selected {
+      background-color: #4CAF50;
+      color: white;
+      font-weight: bold;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+    }
+
+    button:hover {
+      background-color: #388E3C;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- مكان الشعار -->
+  <img src="clinic.png" class="logo">
+
+  <h1>حجز موعد في العيادات</h1>
+
+  <!-- جميع العيادات في كتلة واحدة -->
+  <div class="clinic-list">
+    <div class="clinic-card"><i class="fas fa-cogs"></i> عيادة الغدد الصماء والسكري</div>
+    <div class="clinic-card"><i class="fas fa-brain"></i> عيادة الباطني أعصاب</div>
+    <div class="clinic-card"><i class="fas fa-user-md"></i> عيادة الباطني الدكتور علي الحمايدة</div>
+    <div class="clinic-card"><i class="fas fa-scalpel"></i> عيادة الجراحة الدكتور زكريا النوايسة</div>
+    <div class="clinic-card"><i class="fas fa-scalpel"></i> عيادة الجراحة الدكتورة ميس شديد</div>
+    <div class="clinic-card"><i class="fas fa-female"></i> عيادة النسائية والتوليد</div>
+    <div class="clinic-card"><i class="fas fa-x-ray"></i> عيادة الأشعة</div>
+    <div class="clinic-card"><i class="fas fa-brain"></i> عيادة جراحة الدماغ والأعصاب</div>
+    <div class="clinic-card"><i class="fas fa-user-md"></i> عيادة الأطفال د. هيثم نصراويين</div>
+    <div class="clinic-card"><i class="fas fa-user-md"></i> عيادة الباطني كلى د. محمد حسان الذنيبات</div>
+    <div class="clinic-card"><i class="fas fa-user-md"></i> عيادة الروماتيزم د. وليد الوادي</div>
+    <div class="clinic-card"><i class="fas fa-blood"></i> عيادة أمراض الدم د. أنيس الحلالمة</div>
+    <div class="clinic-card"><i class="fas fa-bone"></i> عيادة العظام والمفاصل د. رضا الختاتنة</div>
+    <div class="clinic-card"><i class="fas fa-bone"></i> عيادة العظام على الطلب</div>
+    <div class="clinic-card"><i class="fas fa-briefcase-medical"></i> عيادة الجلدية د. عوض الطراونة</div>
+    <div class="clinic-card"><i class="fas fa-headset"></i> عيادة النطق د. نهى النوايسة</div>
+    <div class="clinic-card"><i class="fas fa-paint-brush"></i> عيادة التجميل</div>
+    <div class="clinic-card"><i class="fas fa-brain"></i> عيادة النفسية</div>
+    <div class="clinic-card"><i class="fas fa-lungs"></i> عيادة الصدرية والتنفسية</div>
+    <div class="clinic-card"><i class="fas fa-user-md"></i> عيادة الأطفال د. أحمد عودة</div>
+    <div class="clinic-card"><i class="fas fa-user-md"></i> عيادة الأطفال د. أمجد الشواورة</div>
+    <div class="clinic-card"><i class="fas fa-bone"></i> عيادة العظام على الطلب</div>
+    <div class="clinic-card"><i class="fas fa-ear-listen"></i> عيادة الأنف والأذن والحنجرة</div>
+    <div class="clinic-card"><i class="fas fa-gastroenterology"></i> عيادة الجهاز الهضمي والتنظير</div>
+    <div class="clinic-card"><i class="fas fa-procedures"></i> عيادة المسالك البولية د. مالك عياد</div>
+    <div class="clinic-card"><i class="fas fa-x-ray"></i> عيادة الأشعة</div>
+    <div class="clinic-card"><i class="fas fa-heartbeat"></i> عيادة القلب د. فؤاد البطوش</div>
+    <div class="clinic-card"><i class="fas fa-user-md"></i> عيادة الأطفال د. عبدالله الراوي</div>
+    <div class="clinic-card"><i class="fas fa-dumbbell"></i> قسم العلاج الطبيعي د. مؤيد يوسف</div>
+  </div>
+
+  <form id="bookingForm">
+    <input type="text" id="name" placeholder="الاسم الكامل" required>
+    <input type="tel" id="phone" placeholder="رقم الهاتف (يبدأ بـ 07)" required pattern="07[0-9]{8}">
+
+    <div class="date-slots" id="dateSlots"></div>
+    <input type="hidden" id="selectedDate" required>
+
+    <div class="time-slots" id="timeSlots"></div>
+    <input type="hidden" id="selectedTime" required>
+
+    <button type="submit">إرسال عبر واتساب</button>
+  </form>
+
+  <script>
+    // أوقات
+    const timeSlots = document.getElementById("timeSlots");
+    for (let h = 8; h <= 17; h++) {
+      ["00", "30"].forEach(min => {
+        const hour = h.toString().padStart(2, '0');
+        const time = `${hour}:${min}`;
+        const btn = document.createElement("div");
+        btn.className = "time-slot";
+        btn.textContent = time;
+        btn.onclick = function () {
+          document.querySelectorAll(".time-slot").forEach(el => el.classList.remove("selected"));
+          btn.classList.add("selected");
+          document.getElementById("selectedTime").value = time;
+        };
+        timeSlots.appendChild(btn);
+      });
+    }
+
+    // تواريخ
+    const dateSlots = document.getElementById("dateSlots");
+    const today = new Date();
+    for (let i = 0; i < 10; i++) {
+      const date = new Date(today);
+      date.setDate(today.getDate() + i);
+      const day = date.getDate().toString().padStart(2, '0');
+      const month = (date.getMonth() + 1).toString().padStart(2, '0');
+      const display = `${day} / ${month}`;
+      const fullDate = date.toISOString().split("T")[0];
+
+      const btn = document.createElement("div");
+      btn.className = "date-slot";
+      btn.textContent = display;
+      btn.onclick = function () {
+        document.querySelectorAll(".date-slot").forEach(el => el.classList.remove("selected"));
+        btn.classList.add("selected");
+        document.getElementById("selectedDate").value = fullDate;
+      };
+
+      dateSlots.appendChild(btn);
+    }
+
+    // العيادات
+    document.querySelectorAll(".clinic-card").forEach(card => {
+      card.addEventListener("click", () => {
+        card.classList.toggle("selected");
+      });
+    });
+
+    // إرسال
+    document.getElementById("bookingForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const date = document.getElementById("selectedDate").value;
+      const time = document.getElementById("selectedTime").value;
+      const selectedClinics = [...document.querySelectorAll(".clinic-card.selected")].map(el => el.textContent);
+
+      const phonePattern = /^07[0-9]{8}$/;
+      if (!phonePattern.test(phone)) {
+        alert("يرجى إدخال رقم هاتف صحيح مكون من 10 خانات ويبدأ بـ 07");
+        return;
+      }
+
+      if (!time) {
+        alert("يرجى اختيار الوقت");
+        return;
+      }
+
+      if (!date) {
+        alert("يرجى اختيار التاريخ");
+        return;
+      }
+
+      if (selectedClinics.length === 0) {
+        alert("يرجى اختيار عيادة واحدة على الأقل");
+        return;
+      }
+
+      let message = `مرحباً, اسمي ${name}. رقم هاتفي هو ${phone}. \nأود حجز موعد في العيادة/العيادات التالية:\n`;
+      selectedClinics.forEach(clinic => message += `${clinic}\n`);
+      message += `التاريخ: ${date}\nالوقت: ${time}`;
+
+      window.location.href = `https://wa.me/962${phone.replace(/^0/, '')}?text=${encodeURIComponent(message)}`;
+    });
+  </script>
+
+</body>
+</html>
