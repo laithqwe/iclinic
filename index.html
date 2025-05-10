@@ -236,7 +236,7 @@
       selectedClinics.forEach(clinic => message += `${clinic}\n`);
       message += `التاريخ: ${date}\nالوقت: ${time}`;
 
-      window.location.href = `https://wa.me/962798223622${phone.replace(/^0/, '')}?text=${encodeURIComponent(message)}`;
+window.location.href = `https://wa.me/962798223622?text=${encodeURIComponent(message)}`;
     });
   </script>
 
