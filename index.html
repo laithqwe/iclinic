@@ -20,7 +20,6 @@
       padding: 20px 0 10px;
     }
 
-    /* مكان اللوجو */
     .logo {
       display: block;
       max-width: 150px;
@@ -101,12 +100,11 @@
 </head>
 <body>
 
-  <!-- مكان الشعار -->
+  <!-- شعار العيادة -->
   <img src="clinic.png" class="logo">
 
   <h1>حجز موعد في العيادات</h1>
 
-  <!-- جميع العيادات في كتلة واحدة -->
   <div class="clinic-list">
     <div class="clinic-card"><i class="fas fa-cogs"></i> عيادة الغدد الصماء والسكري</div>
     <div class="clinic-card"><i class="fas fa-brain"></i> عيادة الباطني أعصاب</div>
@@ -131,7 +129,7 @@
     <div class="clinic-card"><i class="fas fa-user-md"></i> عيادة الأطفال د. أمجد الشواورة</div>
     <div class="clinic-card"><i class="fas fa-bone"></i> عيادة العظام على الطلب</div>
     <div class="clinic-card"><i class="fas fa-ear-listen"></i> عيادة الأنف والأذن والحنجرة</div>
-    <div class="clinic-card"><i class="fas fa-gastroenterology"></i> عيادة الجهاز الهضمي والتنظير</div>
+    <div class="clinic-card"><i class="fas fa-stethoscope"></i> عيادة الجهاز الهضمي والتنظير</div>
     <div class="clinic-card"><i class="fas fa-procedures"></i> عيادة المسالك البولية د. مالك عياد</div>
     <div class="clinic-card"><i class="fas fa-x-ray"></i> عيادة الأشعة</div>
     <div class="clinic-card"><i class="fas fa-heartbeat"></i> عيادة القلب د. فؤاد البطوش</div>
@@ -153,7 +151,7 @@
   </form>
 
   <script>
-    // أوقات
+    // إنشاء أوقات
     const timeSlots = document.getElementById("timeSlots");
     for (let h = 8; h <= 17; h++) {
       ["00", "30"].forEach(min => {
@@ -171,7 +169,7 @@
       });
     }
 
-    // تواريخ
+    // إنشاء تواريخ
     const dateSlots = document.getElementById("dateSlots");
     const today = new Date();
     for (let i = 0; i < 10; i++) {
@@ -190,18 +188,17 @@
         btn.classList.add("selected");
         document.getElementById("selectedDate").value = fullDate;
       };
-
       dateSlots.appendChild(btn);
     }
 
-    // العيادات
+    // اختيار العيادات
     document.querySelectorAll(".clinic-card").forEach(card => {
       card.addEventListener("click", () => {
         card.classList.toggle("selected");
       });
     });
 
-    // إرسال
+    // إرسال إلى رقم العيادة المحدد
     document.getElementById("bookingForm").addEventListener("submit", function (e) {
       e.preventDefault();
 
@@ -232,11 +229,13 @@
         return;
       }
 
-      let message = `مرحباً, اسمي ${name}. رقم هاتفي هو ${phone}. \nأود حجز موعد في العيادة/العيادات التالية:\n`;
-      selectedClinics.forEach(clinic => message += `${clinic}\n`);
+      let message = `مرحباً، اسمي ${name}. رقم هاتفي هو ${phone}.\nأرغب في حجز موعد في:\n`;
+      selectedClinics.forEach(clinic => message += `- ${clinic}\n`);
       message += `التاريخ: ${date}\nالوقت: ${time}`;
 
-window.location.href = `https://wa.me/962798223622?text=${encodeURIComponent(message)}`;
+      // الرقم الثابت للمركز
+      const whatsappNumber = "962798223622";
+      window.location.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
     });
   </script>
 
